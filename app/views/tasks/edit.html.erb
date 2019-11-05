@@ -1,0 +1,22 @@
+<h1>Update <%= @task.title %> </h1>
+
+<% if @task.errors.any? %>
+  <% @task.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+<% end %>
+
+<!-- @task has an id! -->
+<%= form_for @task do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :details %>
+  <%= f.text_field :details %>
+  <p><%= f.check_box :completed %>Completed?</p>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to task_path, method: :delete,
+data: {confirm: "Are you sure?"} do %>
+  <p>🗑</p>
+<% end %>
